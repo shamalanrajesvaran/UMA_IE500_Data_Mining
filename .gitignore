@@ -1,0 +1,13 @@
+hotel_booking_data/hotel_bookings_with_specific_arrival_date.csv
+hotel_booking_data/hotel_bookings.csv
+
+
+# Ignore environment files
+.env
+# Ignore notebook checkpoints
+.ipynb_checkpoints/
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
