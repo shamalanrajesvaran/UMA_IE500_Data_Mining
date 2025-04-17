@@ -1,5 +1,6 @@
 hotel_booking_data/hotel_bookings_with_specific_arrival_date.csv
 hotel_booking_data/hotel_bookings.csv
+Data Cleaning/cleaned_data.csv
 
 
 # Ignore environment files
