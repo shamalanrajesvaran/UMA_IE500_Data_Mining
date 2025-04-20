@@ -98,7 +98,6 @@ def feature_engineering(df):
     (12, 31),  # New Year's Eve
     (12, 25), # Christmas Day
     (2, 14),  # Valentine's Day
-    (4, 1),   # Easter Sunday (example)
     (10, 31), # Halloween
     ]
     df['is_booking_on_special_day'] = df.apply(
