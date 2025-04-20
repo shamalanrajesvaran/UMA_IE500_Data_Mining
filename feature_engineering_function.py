@@ -105,6 +105,7 @@ def feature_engineering(df):
         lambda x: int((x['booking_date_month_integer_version'], x['booking_date_day_of_month']) in special_days), axis=1)
     df['is_arrival_on_special_day'] = df.apply(
         lambda x: int((x['arrival_date_month_integer_version'], x['arrival_date_day_of_month']) in special_days), axis=1)
+    return df
     
     # Check if the arrival and booking date is a weekend (Saturday or Sunday)
     df['is_arrival_on_weekend'] = df['arrival_date_full'].dt.weekday.isin([5, 6]).astype(int)
