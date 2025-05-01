@@ -94,7 +94,7 @@ Desktop.ini
 *.json
 
 # Model files
-#*.pkl
+*.pkl
 *.joblib
 *.npy
 *.npz
