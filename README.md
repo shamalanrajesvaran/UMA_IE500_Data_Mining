@@ -7,8 +7,6 @@ This project presents a complete data science pipeline for building and evaluati
 ## 📁 Project Structure
 
 ```
-[0] Data Cleaning
-│   └── cleaning.ipynb
 [1] Data Exploration and Visualization
 │   └── Data_exploration_and_visualization_tests/
 │       └── explore_and_vis_time.ipynb
