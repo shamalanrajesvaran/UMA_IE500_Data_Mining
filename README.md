@@ -6,6 +6,8 @@ This project presents a complete data science pipeline for building and evaluati
 
 ## 📁 Project Structure
 (Important notebooks to see and run to get the dataset, or the model states #if not having the zip file containing everything)
+(Please note, this is only the view on Github - If you are opening it up from a zip file uploaded for evaluation, you will only see the relevant ipynbs)
+
 
 ```
 [0] Data_Cleaning_Test
