@@ -5,6 +5,7 @@
 This project presents a complete data science pipeline for building and evaluating machine learning models using structured datasets. The pipeline includes data cleaning, exploratory data analysis and visualization, feature engineering, model training (using multiple algorithms), and comprehensive model selection and evaluation.
 
 ## 📁 Project Structure
+(Important notebooks to see and run to get the dataset, or the model states #if not having the zip file containing everything)
 
 ```
 [1] Data Exploration and Visualization
@@ -21,11 +22,12 @@ This project presents a complete data science pipeline for building and evaluati
 │   ├── XGBoost.ipynb
 │   ├── decision_tree.ipynb
 │   ├── knn.ipynb
+|   ├── logiic_regression.ipynb
 │   └── random_forest.ipynb
 [5] Model Selection
 │   ├── Model_eval_and_compare.ipynb
 │   ├── check_for_ensemble_model.ipynb
-│   └── xgb-holdout-test.ipynb
+│   └── Chosen_model_RF_vis_and_interpretation
 
 Additional Files:
 - .gitignore
@@ -43,8 +45,10 @@ We explore and compare the performance of multiple machine learning models:
 - Random Forest
 - K-Nearest Neighbors (KNN)
 - XGBoost
+- logistic regression
 
-Evaluation metrics include accuracy, precision, recall, F1-score, and ROC-AUC where applicable.
+Evaluation metrics include accuracy, precision, recall, F1-score, and ROC-AUC where applicable (e.g. not for KNN).
+Furthermore, for final evaluation of candidate models - RF and XGB - further qualitative evaluation was conduncted. For details see the notebook: "Model_eval_and_compare"
 
 ## 🔧 Technologies Used
 
@@ -53,6 +57,7 @@ Evaluation metrics include accuracy, precision, recall, F1-score, and ROC-AUC wh
 - Scikit-learn
 - XGBoost
 - Matplotlib, Seaborn (for visualization)
+etc.
 
 ## 🧑‍🤝‍🧑 Contributors
 
@@ -64,6 +69,6 @@ Evaluation metrics include accuracy, precision, recall, F1-score, and ROC-AUC wh
 
 ## 🗓️ Last Updated
 
-March 22, 2025
+15.05.2025
 
 
