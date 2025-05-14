@@ -8,13 +8,13 @@ This project presents a complete data science pipeline for building and evaluati
 (Important notebooks to see and run to get the dataset, or the model states #if not having the zip file containing everything)
 
 ```
+[0] Data_Cleaning_Test
+|   └── cleaning_trial.ipynb
 [1] Data Exploration and Visualization
-│   └── Data_exploration_and_visualization_tests/
-│       └── explore_and_vis_time.ipynb
 │   └── explore_and_vis_time.ipynb
-[2] Feature Engineering
-│   └── Feature_selection.ipynb
-[3] Full Dataset Preparation and Baseline Model Evaluation
+[2] Feature Engineering_Test
+│   └── Feature_selection_trial.ipynb
+[3] [3] Full preparation_engineering and baseline model evaluation
 │   ├── distribution check.ipynb
 │   ├── full dataset preparation and baseline model evaluation.ipynb
 │   └── shuffle closed model experiment notebook.ipynb
