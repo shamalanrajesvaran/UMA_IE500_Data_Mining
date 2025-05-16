@@ -33,7 +33,7 @@ All functionalities used in the preprocessing pipeline are simplified into docum
 │   ├── check_for_ensemble_model.ipynb
 │   └── Chosen_model_RF_vis_and_interpretation
 util/
-main.py
+
 
 
 
@@ -42,6 +42,7 @@ Additional Files:
 - .gitignore
 - README.md
 - _getting_the_data.py
+- main.py
 - data_scaling.py
 - feature_engineering_function.py
 ```
@@ -74,7 +75,6 @@ etc.
 - **Shamalan Rajesvaran**, 2115475, [shamalan.rajesvaran@students.uni-mannheim.de](mailto:shamalan.rajesvaran@students.uni-mannheim.de)  
 - **Bahri Selçuk Eşkil**, 2117150, [bahri.eskil@students.uni-mannheim.de](mailto:bahri.eskil@students.uni-mannheim.de)  
 - **Nicolas Balzek**, 1709460, [nicolas.balzek@students.uni-mannheim.de](mailto:nicolas.balzek@students.uni-mannheim.de)  
-- **Bofan Chen**, 2190412, [bofan.chen@students.uni-mannheim.de](mailto:bofan.chen@students.uni-mannheim.de)
 
 ## 🗓️ Last Updated
 
