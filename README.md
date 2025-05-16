@@ -30,6 +30,10 @@ This project presents a complete data science pipeline for building and evaluati
 │   ├── Model_eval_and_compare.ipynb
 │   ├── check_for_ensemble_model.ipynb
 │   └── Chosen_model_RF_vis_and_interpretation
+|___util
+
+
+
 
 Additional Files:
 - .gitignore
