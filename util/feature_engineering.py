@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
+import pandas as pd
 
 def feature_engineering(df):
     """
@@ -30,10 +26,10 @@ def feature_engineering(df):
     # Add a small value (1e-10) to avoid division by zero errors
     df['total_special_requests_to_adr_ratio'] = df['total_of_special_requests'] / (df['adr'] + 1e-10)
     
-    # Calculate the adr to lead time ratio
+    # Calculate lead_time_to_adr_ratio
     # Add a small value (1e-10) to avoid division by zero errors
-    df['adr_to_lead_time_ratio'] = df['adr'] / (df['lead_time'] + 1e-10)
-    
+    df['lead_time_to_adr_ratio'] = df['lead_time'] / (df['adr'] + 1e-10)
+
     # Calculate weekend to weekday ratio
     # Add a small value (1e-10) to avoid division by zero errors
     df['weekend_weekday_ratio'] = df['stays_in_weekend_nights'] / (df['stays_in_week_nights'] + 1e-10)
@@ -131,9 +127,9 @@ def feature_engineering(df):
     # Add a small value (1e-10) to avoid division by zero errors
     df['booking_changes_to_adr_ratio'] = df['booking_changes'] / (df['adr'] + 1e-10)
 
-    # Calculate ratio of lead_time and total_of_special_requests
+    # Calculate total_special_requests_to_lead_time_ratio
     # Add a small value (1e-10) to avoid division by zero errors
-    df['lead_time_to_total_special_requests_ratio'] = df['lead_time'] / (df['total_of_special_requests'] + 1e-10)
+    df['total_special_requests_to_lead_time_ratio'] = df['total_of_special_requests'] / (df['lead_time'] + 1e-10)
 
     # Calculate ratio of total_previous_bookings and total_of_special_requests
     # Add a small value (1e-10) to avoid division by zero errors
@@ -157,7 +153,7 @@ def feature_engineering(df):
     df['is_room_upgraded_to_premium'] = (
     ~df['reserved_room_type'].isin(premium_rooms) &  # Reserved room is not premium
      df['assigned_room_type'].isin(premium_rooms)   # But assigned room is premium
-    )
+    ).astype(int)
     
     # Early booking with refundable deposit — could be cancellation prone
     df['is_early_refundable_booking'] = ((df['lead_time'] > 90) & (df['deposit_type'] == 'Refundable')).astype(int)
@@ -173,16 +169,20 @@ def feature_engineering(df):
     df['is_long_stay_no_meal'] = df.apply(
         lambda x: (x['meal'] in ['Undefined', 'SC']) and ((x['stays_in_weekend_nights'] + x['stays_in_week_nights']) > 3),
         axis=1
-    )
+    ).astype(int)
 
     # Create binary feature for bookings with children or babies but meal type is 'Undefined' or 'SC'
     # This may indicate families who might be more likely to cancel due to lack of included meals
     df['has_kids_but_no_meal'] = df.apply(
         lambda x: ((x['children'] + x['babies']) > 0) and (x['meal'] in ['Undefined', 'SC']),
         axis=1
-    )
-
+    ).astype(int)
+    
+    #fillna for country
+    df['country'] = df['country'].fillna('unknown')
+    
     # create new column "is_low_activity_agent"
+    df['agent'] = df['agent'].fillna('unknown')
     df['agent'] = df['agent'].astype(str) #agent column is logically categorical
     # Count agent IDs
     agent_counts = df['agent'].value_counts()
@@ -192,10 +192,11 @@ def feature_engineering(df):
     df['is_low_activity_agent'] = df['agent'].isin(rare_agents).astype(int)
     
     # Calculate group size
+    df["children"] = df["children"].astype("Int64") #first fix dtype of children column
     df["total_people"] = df["adults"] + df["children"] + df["babies"]
     
     # Hotel is probably in Portugal bcs most of the bookings are made from Portugal, so let's check if booking was made by a foreigner
-    df["is_booking_foreign"] = (df["country"] != "PRT").astype(int)
+    #df["is_booking_foreign"] = (df["country"] != "PRT").astype(int) # REMOVED AS THIS BECOMES 0.98 CORRELATED WITH country_frequency_encoded COLUMN
 
     # Check if they changed the room of a loyal customer
     df["is_repeated_guest_but_changed_room"] = ((df["is_repeated_guest"] == 1) & (df["reserved_room_type"] != df["assigned_room_type"])).astype(int)
@@ -204,10 +205,24 @@ def feature_engineering(df):
     df["is_late_booking"] = (df["lead_time"] < 7).astype(int)
 
     # Check if it is a solo traveler
-    df["is_solo_traveler"] = ((df["adults"] + df["children"] + df["babies"]) == 1).astype(int)
-    
-    #NOTE: IMO THESE ARE THE COLUMNS TO DROP, AFTER USING THIS FEATURE CREATION FUNCTION:
-    #'arrival_date_year', "arrival_date_day_of_month", "company","reservation_status","reservation_status_date","arrival_date_full","booking_date_full","booking_date_year","booking_date_day_of_month","booking_date_month_integer_version","arrival_date_month_integer_version"
-    #AFTER THAT DROPPING STEP, YOU'LL HAVE 63 USABLE FEATURES EXCEPT "is_canceled", WHICH MEANS 31 USABLE FEATURES ARE BEING CREATED WITH THIS FUNCTION (doubles the first amount)
-    return df
+    df["is_solo_traveler"] = ((df["adults"] + df["children"] + df["babies"]) == 1).astype("Int64")
 
+    #drop unnecessary or unusable columns for modeling
+    df = df.drop(
+        columns=[
+            'arrival_date_year',
+            'arrival_date_day_of_month',
+            'company',
+            'reservation_status',
+            'reservation_status_date',
+            'arrival_date_full',
+            'booking_date_full',
+            'booking_date_year',
+            'booking_date_day_of_month',
+            'booking_date_month_integer_version',
+            'arrival_date_month_integer_version'
+        ]
+    )
+
+
+    return df

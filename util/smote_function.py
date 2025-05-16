@@ -1,11 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-#SMOTE oversampling function
-
 from imblearn.over_sampling import SMOTE
 
 def apply_smote(X, y, sampling_strategy='auto', k_neighbors=5, random_state=42, n_jobs=None):
