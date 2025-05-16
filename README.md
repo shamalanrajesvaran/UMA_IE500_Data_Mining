@@ -7,6 +7,8 @@ This project presents a complete data science pipeline for building and evaluati
 ## 📁 Project Structure
 (Important notebooks to see and run to get the dataset, or the model states #if not having the zip file containing everything)
 (Please note, this is only the view on Github - If you are opening it up from a zip file uploaded for evaluation, you will only see the relevant ipynbs)
+- util package
+All functionalities used in the preprocessing pipeline are simplified into documented, callable functoins in the util package. This serves better modularity and reusability, and easier modification. Codes in this package only account for modifying the data, as for reasoning please refer to full dataset preparation and baseline model evaluation in [3].
 
 
 ```
@@ -30,7 +32,8 @@ This project presents a complete data science pipeline for building and evaluati
 │   ├── Model_eval_and_compare.ipynb
 │   ├── check_for_ensemble_model.ipynb
 │   └── Chosen_model_RF_vis_and_interpretation
-|___util
+util/
+main.py
 
 
 
